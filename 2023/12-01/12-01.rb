@@ -1,8 +1,17 @@
-# translate string numbers into numerals
-# scan through document
-
 def run
-  translate_input
+  collection_of_updated_lines = translate_input
+  make_additions(collection_of_updated_lines)
+end
+
+def make_additions(collection_of_updated_lines)
+  numbers_to_add = []
+  collection_of_updated_lines.each do |line|
+    first_digit = line.scan(/\d/)[0,1][0]
+    last_digit = line.scan(/\d/)[-1,1][0]
+    sum_of_first_and_last = first_digit + last_digit
+    numbers_to_add << sum_of_first_and_last.to_i
+  end
+  numbers_to_add.sum
 end
 
 def calibration_input
@@ -10,28 +19,29 @@ def calibration_input
   File.open(path)
 end
 
-def one_input
-  '817sixqtvhxpfglj5kzmbtwofive'
+def collection_of_input
+  array_of_input = []
+  calibration_input.each do |one_input|
+    array_of_input << one_input
+  end
+  array_of_input
 end
 
 def translate_input
   collection_of_updated_lines = []
-  new_full_line = replace_string_with_numeral(one_input)
-  collection_of_updated_lines << new_full_line
+  collection_of_input.each do |one_input|
+    new_full_line = replace_string_with_numeral(one_input)
+    collection_of_updated_lines << new_full_line
+  end
   collection_of_updated_lines
-end
-
-def numbers
-  %w[one two three four five six seven eight nine]
 end
 
 def replace_string_with_numeral(line)
   things_found = find_string_match(line)
-  puts(things_found)
-  puts("Things found count: #{things_found.count}")
   things_found.each do |thing_found|
-    new_line = line.gsub(/#{thing_found}/, convert_number(thing_found))
+    line = line.gsub(/#{thing_found}/, convert_number(thing_found))
   end
+  line
 end
 
 def find_string_match(line)
@@ -42,6 +52,10 @@ def find_string_match(line)
     end
   end
   matches
+end
+
+def numbers
+  %w[one two three four five six seven eight nine]
 end
 
 def convert_number(number_string)
@@ -65,4 +79,6 @@ def convert_number(number_string)
     9.to_s
   end
 end
+
+run
 
