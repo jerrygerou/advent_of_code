@@ -1,13 +1,17 @@
 class ListSorter
     attr_accessor :left_list, :right_list, :differences
+    attr_reader :file
     def initialize(input_filepath)
-        file = File.open(input_filepath)
+        @file = File.open(input_filepath)
         @left_list = []
         @right_list = []
         @differences = []
+    end
+
+    def solve
         prepare_lists(file.readlines.map(&:split))
         get_differences
-        puts(@differences.sum)
+        @differences.sum
     end
 
     def prepare_lists(full_list)
@@ -22,10 +26,10 @@ class ListSorter
     def get_differences
         @left_list.each_with_index do |left, index|
             difference = (left.to_i - @right_list[index].to_i).abs
-            @differences.append(difference.to_i)
+            @differences.append(difference)
         end
     end
 end
 
 
-ListSorter.new('input_file.txt')
+puts(ListSorter.new('input_file.txt').solve)
