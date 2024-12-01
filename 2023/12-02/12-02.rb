@@ -24,6 +24,17 @@ end
 
 def game_data_into_hash(data_input)
   game_id = data_input.split(':')[0].gsub(/[^0-9]/, '').to_i
+  puts(game_id)
+  rolls = data_input.split(':')[1].gsub(' ', '').split(';')
+  rolls.each do |roll|
+    cubes = roll.split(',')
+    cubes.each do |cube|
+      key =cube.scan(/\D*/)[1]
+      value = cube.scan(/\d*/)[0,1]
+    end
+    game[game_id][]
+  end
+  puts(rolls)
 end
 
 def test_input
