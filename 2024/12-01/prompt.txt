@@ -41,6 +41,6 @@ Your actual left and right lists contain many location IDs. What is the total di
 
 To begin, get your puzzle input.
 
-Answer: 
+Answer: 1660292
  
 You can also [Share] this puzzle.

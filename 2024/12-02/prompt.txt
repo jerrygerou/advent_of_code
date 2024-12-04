@@ -33,7 +33,7 @@ Analyze the unusual data from the engineers. How many reports are safe?
 
 To begin, get your puzzle input.
 
-Answer:
+Answer: 407
 
 
 You can also [Share] this puzzle.
