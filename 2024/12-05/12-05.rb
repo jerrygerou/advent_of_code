@@ -14,6 +14,11 @@ class PageOrderer
         solve_problem
     end
 
+    def solve_reorder
+        prepare_sections
+        solve_reorder_problem
+    end
+
     def prepare_sections
         @input.each do |line|
             if line.nil? || line.empty?
@@ -60,6 +65,12 @@ class PageOrderer
 
         middle_pages.sum
     end
+
+    def solve_reorder_problem
+        
+    end
+
 end
 
 puts(PageOrderer.new('input.txt').solve)
+puts(PageOrderer.new('input.txt').solve_reorder)
