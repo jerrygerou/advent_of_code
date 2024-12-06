@@ -22,7 +22,6 @@ class WordSearch
     end
 
     def solve_for_x
-        #478 too low
         prepare_board
         run_through_board_again
         puts(@found_count)
